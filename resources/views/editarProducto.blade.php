@@ -1,7 +1,7 @@
 @extends('layout.admin')
 
 @section('titulo')
-    <title>Registrar Producto</title>
+    <title>Editar Producto</title>
  @endsection
 
 @section('css')
@@ -11,7 +11,7 @@
 @section('titulo-pagina')
 <div class="card-body text-center bg-light ">
     <div class="container-sm text-left ">
-        <form class="login100-form validate-form" method="post" action="{{route('admin.registrarForn')}}">
+        <form class="login100-form validate-form" method="post" action="{{route('admin.editarForn',["id" => $productos->id_producto])}}">
             {{csrf_field()}}
                     <label class="login100-form-title">
                         @if(isset($estatus))
@@ -22,25 +22,25 @@
                                 @endif
                     	 @endif
                     </label>
-            <h1>Registrar producto</h1>
+            <h1>Editar producto</h1>
             <p>Codigo de barras</p>
-            <input type="text" name="codigo">
+            <input class="form-control" type="text" name="id"  value="{{$productos->id_producto}}" readonly>
+            <input class="form-control" type="text" name="codigo" value="{{$productos->clave}}">
             <p>Nombre</p>
-            <input type="text" name="nombre">
+            <input class="form-control" type="text" name="nombre" value="{{$productos->nombre}}">
             <p>Descripcion</p>
-            <input type="text" name="descripcion">
+            <input class="form-control" type="text area" name="descripcion" value="{{$productos->descripcion}}">
             <p>Precio</p>
-            <input type="number" name="precio">
+            <input class="form-control" type="number" name="precio" value="{{$productos->precio}}">
             <p>Marca</p>
-            <input type="text" name="marca">
+            <input class="form-control" type="text" name="marca" value="{{$productos->marca}}">
             <br><br><br>
             <label></label>
             <button class="btn btn-primary">
-                Registrar
+                Actualizar
             </button>
-
         </form>
-        <br><br><br>
+        <br><br>
         <a href="{{route('admin.inicio')}}" class="btn btn-danger btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-trash-alt"></i>

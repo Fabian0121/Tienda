@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,8 @@ Route::get('/registrarse',[UsuarioController::class,'registroVista'])->name('reg
 Route::post('/registro',[UsuarioController::class,'registroForm'])->name('registro.form');
 Route::get('/cerrarSesion',[UsuarioController::class,'cerrarSesion'])->name('cerrar.sesion');
 //Registrarse administrador
+Route::get('/login/admin',[UsuarioController::class,'loginAdmin'])->name('login.admin');
+Route::post('/loginform/admin',[UsuarioController::class,'verificarLoginAdmin'])->name('login.formAdmin');
 Route::get('/registrarse/regostro/admin',[UsuarioController::class,'registroVistaAdmin'])->name('registrarseAdmin');
 Route::post('/registro/admin',[UsuarioController::class,'registroFormAdmin'])->name('registro.formAdmin');
 
@@ -37,8 +40,14 @@ Route::prefix('/usuario')->middleware("verificarUsuario")->group(function (){
     Route::get('/mensaje',[ExamenController::class,'mensaje'])->name('usuario.mensaje');
     Route::get('/resultados/{codigo?}',[ExamenController::class,'resultados'])->name('usuario.resultados');
     Route::get('/imprimir',[ExamenController::class,'imprimir'])->name('usuario.imprimir');
-    //Admin
-    Route::get('/inicio/Admin',[UsuarioController::class,'inicioAdmin'])->name('usuario.inicio.admin');
+   */ //Admin
+    Route::get('/admin/inicio',[UsuarioController::class,'admininicio'])->name('admin.inicio');
+    //Productos
+    Route::get('/admin/registrar',[ProductosController::class,'vistaregistrar'])->name('admin.registrar');
+    Route::post('/admin/registrar/verificar',[ProductosController::class,'registrarProducto'])->name('admin.registrarForn');
+    Route::get('/admin/editarRegistro/{id?}',[ProductosController::class,'editarVista'])->name('admin.editar');
+    Route::post('/admin/editar/verificar/{id?}',[ProductosController::class,'editarRegistro'])->name('admin.editarForn');
+  /*  Route::get('/inicio/Admin',[UsuarioController::class,'inicioAdmin'])->name('usuario.inicio.admin');
     Route::get('/imprimir/admin/{correo?}',[ExamenController::class,'resultadospdf'])->name('usuario.imprimir.admin');
     Route::get('/verResultados/{correo?}',[ExamenController::class,'verresultados'])->name('usuario.resultados.admin');
     Route::get('/todos/admin',[ExamenController::class,'mostrartodos'])->name('usuario.todos.admin');

@@ -20,7 +20,7 @@
 					<img src="/css/login/images/img-01.png" alt="IMG">
 				</div>
 				
-				<form class="login100-form validate-form"  method="post" action="{{route('login.form')}}">
+				<form class="login100-form validate-form"  method="post" action="{{route('login.formAdmin')}}">
                     
                     {{csrf_field()}}
                     <label class="login100-form-title">
@@ -61,7 +61,7 @@
 					</div>
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="{{route('registrarse')}}">
+						<a class="txt2" href="{{route('registrarseAdmin')}}">
 							Registrarse
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
