@@ -31,7 +31,8 @@ class ProductosController extends Controller
         $productos->marca = $marca;
         $productos->save();
         $todos = productos::get();
-        return view("inicioAdmin",["productos"=>$todos]);
+
+        return redirect('usuario/admin/inicio');
     }
     //Editar
     public function editarVista($id){
@@ -40,7 +41,8 @@ class ProductosController extends Controller
     }
     public function editarRegistro($id,Request $datos)
     {
-        $productos = productos::where('id_producto',"1")->first();
+        $id=$datos->id;
+        $productos = productos::where('id_producto',$id)->first();
         $codigo= $datos->codigo;
         $nombre = $datos->nombre;
         $descripcion = $datos->descripcion;
@@ -54,5 +56,12 @@ class ProductosController extends Controller
         $productos->marca = $marca;
         $productos->save();
         return redirect('usuario/admin/inicio');
+    }
+    public function eliminarProducto($id)
+    {
+        $producto = productos::where('id_producto',$id)->first();
+        $producto->delete();
+        return redirect('usuario/admin/inicio');
+
     }
 }

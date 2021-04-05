@@ -24,11 +24,17 @@
         <p>Marca: {{$a->marca}}</p>
         <br>
         <label></label>
-        <a href="{{route('admin.editar',["id" => $a->id_producto])}}" class="btn btn-danger btn-icon-split">
+        <a href="{{route('admin.editar',["id" => $a->id_producto])}}" class="btn btn-success btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-trash-alt"></i>
             </span>
             <span class="text">Editar</span>
+        </a>
+        <a href="{{route('admin.eliminar',["id" => $a->id_producto])}}" class="btn btn-danger btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-trash-alt"></i>
+            </span>
+            <span class="text">Eliminar</span>
         </a>
     @endforeach
     </div>

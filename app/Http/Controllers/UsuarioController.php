@@ -160,7 +160,8 @@ class UsuarioController extends Controller
     }
     //Funcion pantalla de inicio
     public function mostrarTodo(){
-        return view("inicio");
+        $todos = productos::get();
+        return view("inicio",["productos"=>$todos]);
     }
 
 }

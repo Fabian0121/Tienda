@@ -28,7 +28,8 @@
       <div class="bg-dark border-right" id="sidebar-wrapper">
         <div class="sidebar-heading text-light">Menu </div>
         <div class="list-group list-group-flush">
-          <a href="" class="list-group-item list-group-item-action bg-dark text-light">Pedidos</a>
+          <a href="{{route('admin.inicio')}}" class="list-group-item list-group-item-action bg-dark text-light">Inicio</a>
+          <a href="{{route('admin.pedidos')}}" class="list-group-item list-group-item-action bg-dark text-light">Pedidos</a>
         </div>
       </div>
       <!-- /#sidebar-wrapper -->

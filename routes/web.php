@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarritoControler;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -35,18 +36,23 @@ Route::post('/registro/admin',[UsuarioController::class,'registroFormAdmin'])->n
 //Rutas para usuario
 Route::prefix('/usuario')->middleware("verificarUsuario")->group(function (){
     Route::get('/inicio',[UsuarioController::class,'mostrarTodo'])->name('usuario.inicio');
-  /*Route::get('/examen',[ExamenController::class,'examen'])->name('usuario.examen');
-    Route::post('/examenR',[ExamenController::class,'respuesta'])->name('usuario.respuesta');
-    Route::get('/mensaje',[ExamenController::class,'mensaje'])->name('usuario.mensaje');
-    Route::get('/resultados/{codigo?}',[ExamenController::class,'resultados'])->name('usuario.resultados');
-    Route::get('/imprimir',[ExamenController::class,'imprimir'])->name('usuario.imprimir');
-   */ //Admin
+    //Carrito
+    Route::get('/carrito/productos',[CarritoControler::class,'miCarrito'])->name('usuario.inicio.carrito');
+    Route::get('/carrito/pedidos',[CarritoControler::class,'mostrarPedidosUsuario'])->name('usuario.inicio.pedidos');
+    //Agregar pedido
+    Route::get('/pedido/agregar',[CarritoControler::class,'agregarPedido'])->name('usuario.inicio.pedidoAgregar');
+    Route::get('/carrito/eliminar/{id?}',[CarritoControler::class,'eliminar'])->name('usuario.inicio.eliminar');
+    Route::get('/carrito/{id?}',[CarritoControler::class,'agregar'])->name('usuario.inicio.agregar');
+     //Admin
     Route::get('/admin/inicio',[UsuarioController::class,'admininicio'])->name('admin.inicio');
+    Route::get('/admin/pedidos',[CarritoControler::class,'pedidosAdmin'])->name('admin.pedidos');
+    Route::get('/admin/eliminar/{id?}',[ProductosController::class,'eliminarProducto'])->name('admin.eliminar');
     //Productos
     Route::get('/admin/registrar',[ProductosController::class,'vistaregistrar'])->name('admin.registrar');
     Route::post('/admin/registrar/verificar',[ProductosController::class,'registrarProducto'])->name('admin.registrarForn');
     Route::get('/admin/editarRegistro/{id?}',[ProductosController::class,'editarVista'])->name('admin.editar');
     Route::post('/admin/editar/verificar/{id?}',[ProductosController::class,'editarRegistro'])->name('admin.editarForn');
+  
   /*  Route::get('/inicio/Admin',[UsuarioController::class,'inicioAdmin'])->name('usuario.inicio.admin');
     Route::get('/imprimir/admin/{correo?}',[ExamenController::class,'resultadospdf'])->name('usuario.imprimir.admin');
     Route::get('/verResultados/{correo?}',[ExamenController::class,'verresultados'])->name('usuario.resultados.admin');

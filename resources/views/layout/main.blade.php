@@ -28,7 +28,9 @@
       <div class="bg-dark border-right" id="sidebar-wrapper">
         <div class="sidebar-heading text-light">Menu </div>
         <div class="list-group list-group-flush">
-          <a href="" class="list-group-item list-group-item-action bg-dark text-light">Resultados</a>
+          <a href="{{route('usuario.inicio')}}" class="list-group-item list-group-item-action bg-dark text-light">inicio</a>
+          <a href="{{route('usuario.inicio.carrito')}}" class="list-group-item list-group-item-action bg-dark text-light">Mi carrito</a>
+          <a href="{{route('usuario.inicio.pedidos')}}" class="list-group-item list-group-item-action bg-dark text-light">Mis pedidos</a>
         </div>
       </div>
       <!-- /#sidebar-wrapper -->
